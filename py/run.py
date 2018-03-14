@@ -45,7 +45,7 @@ def get_data(base_dir, train_test_ind=None, train_percents=0.8):
 
 
 def train(cl, base_dir, train_test_ind=None, train_percents=0.8):
-    np.random.seed(7)
+    np.random.seed(19)
     train_test_ind, df_list, size, x_all, df_names = get_data(base_dir, train_test_ind, train_percents)
     models = []
     lik = 0
@@ -104,11 +104,15 @@ def test_p2(p1_models, base_dir, train_test_ind=None, train_percents=0.8):
     return  models, train_test_ind, lik
 
 
-def to_csv(models, df_names):
+def to_csv(models, df_names, file_path=None):
     ab_dic = {}
     for model, path in zip(models, df_names):
         ab_dic[os.path.basename(path)] = model.get_a_b()
     df = pd.DataFrame(ab_dic).T
+    df.reset_index(inplace=True)
+    df.columns = ['file_name', 'a', 'b']
+    if file_path is not None:
+        df.to_csv(file_path, index=False)
     return df
 
 def main(base_dir='/home/urihei/proj/'):
