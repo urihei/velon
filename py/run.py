@@ -18,7 +18,9 @@ def plot(models, df_list, label, plot_points=False):
             plt.plot(df['x'].values, df['y'].values, '.')
         a = np.sort(df['x'].values)
         plt.plot(a, model.get_y(a), '-', label=label)
+        plt.legend()
     plt.show()
+
 
 
 def get_data(base_dir, train_test_ind=None, train_percents=0.8):
@@ -44,8 +46,8 @@ def get_data(base_dir, train_test_ind=None, train_percents=0.8):
     return train_test_ind, df_list, size, x_all, df_names
 
 
-def train(cl, base_dir, train_test_ind=None, train_percents=0.8):
-    np.random.seed(19)
+def train(cl, base_dir, train_test_ind=None, train_percents=0.95):
+    np.random.seed(95)
     train_test_ind, df_list, size, x_all, df_names = get_data(base_dir, train_test_ind, train_percents)
     models = []
     lik = 0
@@ -76,7 +78,7 @@ def train(cl, base_dir, train_test_ind=None, train_percents=0.8):
     return models, train_test_ind, lik, df_names
 
 
-def test_p2(p1_models, base_dir, train_test_ind=None, train_percents=0.8):
+def test_p2(p1_models, base_dir, train_test_ind=None, train_percents=0.95):
     # Try in user Pareto1 as init for Pareto2
     train_test_ind, df_list, size, x_all = get_data(base_dir=base_dir, train_test_ind=train_test_ind,
                                                     train_percents=train_percents)
@@ -114,6 +116,7 @@ def to_csv(models, df_names, file_path=None):
     if file_path is not None:
         df.to_csv(file_path, index=False)
     return df
+
 
 def main(base_dir='/home/urihei/proj/'):
     """
