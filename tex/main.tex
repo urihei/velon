@@ -1,0 +1,88 @@
+\documentclass{article}
+\title{Linear model}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{algpseudocode,algorithm} 
+\input{macros}
+\author{Uri Heinemann}
+\begin{document}
+\maketitle
+\section{Gaussian distribution}
+
+The first and simplest model will be the normal distribution.
+The usual formulation of the problem is $y \sim N(ax+b, \sigma^2)$.
+By allowing the noise to depend on $x$ the following model can be considered $y \sim N(ax+b, \sigma(x)^2)$.
+In this model each x have a different noise level.
+Now the maximum likelihood can be formulated as:
+\be
+\frac{1}{n} \sum_i \log p(y_i | x_i) = \frac{1}{n} \sum_i -\log{\sqrt{2\pi \sigma(x_i)^2}} - \frac{(ax_i + b - y_i)^2}{2\sigma(x_i)^2}
+\ee
+Taking the derivatives
+\bea
+\frac{\partial L(\yy, \xx, a,b, \sigma(x)^2)}{\partial a} &=& \frac{1}{n}\sum_i \frac{x_i(a x_i+b-y_i)}{\sigma(x_i)^2}\\
+\frac{\partial L(\yy, \xx, a,b, \sigma(x)^2)}{\partial b} &=& \frac{1}{n}\sum_i \frac{(a x_i+b-y_i)}{\sigma(x_i)^2}\\
+\eea
+Comparing to zero and some algebra will result in
+\bea
+a &=&  \frac{\sum_i \frac{y_ix_i}{\sigma(x_i)^2} - \frac{\sum_i \frac{x_i}{\sigma(x_i)^2} \sum_j\frac{ y_j}{\sigma(x_j)^2}}{\sum_i \frac{1}{\sigma(x_i)^2}}}{\sum_i  \frac{x_i^2}{\sigma(x_i)^2} -\frac{ \left(\sum_i \frac{x_i}{\sigma(x_i)^2} \right)^2}{\sum_i \frac{1}{\sigma(x_i)^2}}}\\
+\ignore{
+0 &=&\sum_i (ax_i^2 +x_i b-y_ix_i)/\sigma(x_i)^2\\
+&=& \sum_i a \frac{x_i^2}{\sigma(x_i)^2} +\sum_i \frac{x_i}{\sigma(x_i)^2} \frac{\sum_j \frac{y_j -ax_j}{\sigma(x_j)^2}}{\sum_j \frac{1}{\sigma(x_j)^2}}- \sum_i \frac{y_ix_i}{\sigma(x_i)^2}\\
+a \left(\sum_i  \frac{x_i^2}{\sigma(x_i)^2} -\frac{ \left(\sum_i \frac{x_i}{\sigma(x_i)^2} \right)^2}{\sum_i \frac{1}{\sigma(x_i)^2}} \right)&=& \sum_i \frac{y_ix_i}{\sigma(x_i)^2} - \frac{\sum_i \frac{x_i}{\sigma(x_i)^2} \sum_j\frac{ y_j}{\sigma(x_j)^2}}{\sum_i \frac{1}{\sigma(x_i)^2}}\\
+}
+b &=& \frac{\sum_i \frac{y_i - ax_i}{\sigma(x_i)^2}}{\sum_i \frac{1}{\sigma(x_i)^2}}
+\eea
+if we farther assume a linear model to $\sigma(x_i)^2 = \mexp{c x_i + d}$
+the likelihood function will be 
+\be
+\frac{1}{n} \sum_i \log p(y_i | x_i) = \frac{1}{2n} \sum_i -(c x_i +d)-\log{2\pi} - (ax_i + b - y_i)^2 \mexp{-(c x_i + d)}
+\ee
+\ignore{\bea
+\frac{\partial L(\yy, \xx, a,b, c,d)}{\partial c} &=& \frac{1}{2n} \sum_i - x_i + x_i(a x_i+b-y_i)^2\mexp{-(c x_i + d)}\\
+\frac{\partial L(\yy, \xx, a,b, c,d)}{\partial d} &=& \frac{1}{2n} \sum_i - 1 + (a x_i+b-y_i)^2\mexp{-(c x_i + d)}\\
+\eea}
+\section{Exponential Distribution}
+
+We will now model the error with different distribution, the exponential one.
+Since the exponential distribution is defined only on positive numbers, $y$ will be distributed by first sample uniformly the sign of the error and then the size is distributed bu the exponential with parameter that depend on $x$. This sum down to 
+\bea
+y &\sim& a x + b + \xi \epsilon(|a x + b -y|, \mexp{c x+d}) \\
+\xi &\sim& U\{-1, 1\} \\
+\epsilon(x, \lambda) &\sim& \lambda\mexp{-\lambda x}\\
+\eea
+Now the normalized log likelihood is
+\be
+\frac{1}{n} \sum_i \log p(y_i|x_i,a,b,c,d) = \frac{1}{2n} \sum_i c x_i +d -\mexp{c x_i +d}|a x_i  + b - y_i |
+\ee
+\section{Pareto}
+\bea
+y &\sim& a x + b + \xi \epsilon(|a x + b -y|, \mexp{c x+d}, \alpha) \\
+\xi &\sim& U\{-1, 1\} \\
+\epsilon(x, \lambda, \alpha) &\sim& \frac{\alpha}{\lambda}\left[\frac{x}{\lambda}\right]^{-(\alpha+1)}\\
+\eea
+With the constrain that $\mexp{c x+d} < |a x + b -y|, \alpha > 0$ for all $x,y$.
+Now the normalized log likelihood is
+\be
+\frac{1}{n} \sum_i \log p(y_i|x_i,a,b,c,d, \alpha) = 
+\frac{1}{2n} \sum_i \log(\alpha) -(\alpha + 1)\log(|a x_i + b -y_i|) + \alpha(c x_i+d)
+\ee
+%$\frac{1}{2n} \sum_i -(c x_i-d)+\log(\alpha) -(\alpha + 1)\log(|a x_i + b -y_i|) +(\alpha + 1)(c x_i-d)$
+It is clear that $c, d = \arg \max \sum_i(c x_i-d) $ such that $\mexp{c x_i+d} < |a x_i + b -y_i|$ for all $x_i, y_i$
+and $\alpha = \frac{n}{\sum_i \log(|a x_i + b -y_i|)- (c x_i + d)}$
+If we farther allow the $\alpha$ parameter to depend on x $\alpha(x) = \mexp{ex+f}$ the likelihood will be
+\bea
+&\frac{1}{n}& \sum_i \log p(y_i|x_i,a,b,c,d, e,f) = \\
+&\frac{1}{2n}& \sum_i ex+f -(\mexp{ex+f}+ 1)\log(|a x_i + b -y_i|) + \mexp{ex+f}(c x_i+d)
+\eea
+The maximum value of $c,d$ hold but now optimization will be needed to find $a,b,e,f$.
+%\ignore{
+\bea
+0&=&\frac{1}{\alpha} - \frac{1}{n}\sum_i \log(|a x_i + b -y_i|) - (c x_i + d)\\
+\alpha &=& \frac{n}{\sum_i \log(|a x_i + b -y_i|) - (c x_i + d)}\\
+0&=&- \sum_i \frac{\alpha + 1}{|a x_i + b -y_i|}\\
+\eea
+%}
+%\be
+%\frac{1}{n} \sum_i \log p(y_i|x_i,a,b,c,d, \alpha) = \frac{1}{2n} \sum_i -c %x_i -d + \log(\alpha) -(\alpha + 1)\log\left(1+|a x + b -y|\mexp{-c %x-d}}\right)
+%\ee
+\end{document}

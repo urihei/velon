@@ -1,0 +1,191 @@
+\usepackage{boxedminipage}
+\usepackage{dsfont}
+\newcommand{\kermat}{{\mathcal{K}}}
+\newcommand{\Hz}{{\mathcal{A}}}
+\newcommand{\Ho}{{\mathcal{A}^+}}
+\newcommand{\beste}{{\epsilon_0}}
+\newcommand{\pgraph}[1]{\mathcal{G}_{#1}}
+\renewcommand{\tt}{\boldsymbol{t}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\adj}{\textrm{adj}}
+\newcommand{\xm}{{\xx}^{(m)}}
+\newcommand{\ym}{{\yy}^{(m)}}
+\newcommand{\longwedge}[2]{ {#1}_1\wedge \ldots\wedge {#1}_{#2}}
+\newcommand{\dfm}{\Delta f^{(m)}}
+\newcommand{\lossm}{e^{(m)}}
+ \newcommand{\lpell}{{\hat{l}_h}}
+\newcommand{\ext}[1]{\textrm{ext} #1}
+\newcommand{\err}{\textrm{err}}
+\newcommand{\monomials}[1]{{\cal T}^{#1}}
+\newcommand{\dmonomials}[2]{{\cal T}^{#1}_{#2}}
+\newcommand{\prmi}{e}
+\newcommand{\KLD}[2]{D_{KL}[{#1}|{#2}]}
+\newcommand{\prm}{\mathbf{e}}
+\newcommand{\cC}{{\cal C}}
+\newcommand{\cA}{{\cal A}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\C}{\chi}
+\newcommand{\jf}{JF}
+%\newcommand{\needcite}[1]{{\bf CITATION #1}}
+\newcommand{\needcite}[1]{}
+\newcommand{\cpr}{\hat{c}}
+\newcommand{\cS}{{\cal S}}
+\newcommand{\cX}{{\cal X}}
+\newcommand{\cY}{{\cal Y}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\benn}{\begin{equation*}}
+\newcommand{\eenn}{\end{equation*}}
+\newcommand{\bea}{\begin{eqnarray*}}
+\newcommand{\eea}{\end{eqnarray*}}
+\newcommand{\bean}{\begin{eqnarray}}
+\newcommand{\eean}{\end{eqnarray}}
+\newcommand{\pdOne}[1]{\frac{\partial}{\partial#1}}
+\newcommand{\pdTwo}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\tauv}{\boldsymbol{\tau}}
+\newcommand{\lclsol}{\muv^{L*}} 
+\newcommand{\lclsolb}{\mubv^{L*}}
+\newcommand{\margpolycs}{{\cal{M}}_{\cC}}
+\newcommand{\ouralglong}{~Max Product Linear Programming~}
+\newcommand{\ouralg}{\mbox{MPLP}}
+\newcommand{\maplpr}{\mbox{MAPLPR}}
+\newcommand{\dmaplpr}{\mbox{DMAPLPR}}
+\newcommand{\maplpre}{\mbox{MAPLPRE}}
+\newcommand{\dmaplpre}{\mbox{DMAPLPRE}}
+\newcommand{\thv}{\boldsymbol{\theta}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\aalpha}{{\boldsymbol{\alpha}}} 
+\newcommand{\bbeta}{{\boldsymbol{\beta}}} 
+\newcommand{\ww}{\boldsymbol{w}} 
+\newcommand{\wparams}{\mathcal{W}} 
+\newcommand{\wparamsi}[1]{\mathcal{W}_{1:{#1}}} 
+\newcommand{\pp}{\boldsymbol{p}} 
+\newcommand{\xx}{\boldsymbol{x}} 
+\newcommand{\yy}{\boldsymbol{y}} 
+\newcommand{\zz}{\boldsymbol{z}}
+\newcommand{\hclass}{\mathcal{H}}
+\newcommand{\zerov}{\boldsymbol{0}} 
+\newcommand{\xmap}{\xx^{\mbox\tiny MAP}}
+\newcommand{\vv}{\boldsymbol{v}} 
+\newcommand{\uu}{\boldsymbol{u}} 
+\newcommand{\samp}[1]{\bar{\mathbf{#1}}}
+\newcommand{\lsamp}[1]{\mathbf{#1}^{\mathfrak{l}}}
+\renewcommand{\aa}{\boldsymbol{a}} 
+\newcommand{\JF}{JF} 
+\newcommand{\todo}[1]{({\textcolor{red}{#1}})}
+\newcommand{\atodo}[1]{({\textcolor{red}{#1}})}
+\newcommand{\rtodo}[1]{({\textcolor{green}{#1}})}
+\newcommand{\NN}{\boldsymbol{N}} 
+\newcommand{\qq}{\boldsymbol{q}} 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\probarg}[1]{\prob\left[{#1}\right]}
+\newcommand{\probargsub}[2]{\underset{#2}{\prob}\left[{#1}\right]}
+\newcommand{\xh}{\hat{x}}
+\newcommand{\muv}{\boldsymbol{\mu}}
+\newcommand{\mub}{\bar{\mu}}
+\newcommand{\mubv}{\boldsymbol{\mub}}
+\newcommand{\mut}{\tilde{\mu}}
+\newcommand{\deltab}{\bar{\delta}}
+\newcommand{\hauss}[1]{\mathbb{H}^{#1}}
+\newcommand{\ignore}[1]{}
+\newcommand{\comment}[1]{}
+\newcommand{\set}{S}
+\newcommand{\alg}{\mathcal{A}}
+\newcommand{\com}[1]{\ignore{#1}}
+\newcommand{\thetav}{\boldsymbol{\theta}}
+\newcommand{\phiv}{\boldsymbol{\phi}}
+\newcommand{\thetab}{\bar{\theta}}
+\newcommand{\pfam}[1]{\mathcal{P}_{#1}}
+\newcommand{\betav}{\boldsymbol{\beta}}
+\newcommand{\thetabv}{\boldsymbol{\thetab}}
+\newcommand{\margpoly}{{\cal{M}}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\into}{{\leftarrow}}
+\newcommand{\lclmargpoly}{{\cal{M}}_L}
+\newcommand{\lclmargpolyb}{{\bar{\cal{M}}}_L}
+\newcommand{\lamminus}[2]{\lambda^{-#1}_{#2}(x_{#2})}
+\newcommand{\lamto}[2]{\lambda_{#1\to#2}(x_{#2})}
+\newcommand{\lamminustar}[2]{\lambda^{-#1}_{#2}(x_{#2}^*)}
+\newcommand{\xs}[1]{{\xx}^{(#1)}} 
+\newcommand{\ys}[1]{{\yy}^{(#1)}} 
+\newcommand{\polyring}[1]{\reals\left[x_1,\ldots,x_n\right]}
+\newcommand{\F}[2]{F_{#2}(#1)}
+\newcommand{\valpha}{\boldsymbol{\alpha}}
+\newcommand{\vbeta}{\boldsymbol{\beta}}
+\newcommand{\one}{\boldsymbol{1}}
+\newcommand{\zero}{\boldsymbol{0}}
+\newcommand{\inner}[1]{\langle #1\rangle}
+\newcommand{\vspan}{\textrm{span}}
+
+\newcommand{\price}{p}
+\newcommand{\sgn}[1]{\Theta \left( #1 \right)}
+\newcommand{\prices}{{\mathbf \price}}
+\newcommand{\pricei}[1][i]{{\price_{#1}}}
+
+\newenvironment{myalgo}[1]%
+{
+%\vspace{0.3cm}
+\begin{center}
+\begin{boxedminipage}{0.8\linewidth}
+\begin{center}
+\textbf{\texttt{#1}}
+\end{center}
+\rm
+\begin{tabbing}
+....\=...\=...\=...\=...\=  \+ \kill
+} %
+{\end{tabbing} 
+\end{boxedminipage} \end{center} %\vspace{0.3cm}
+}
+\newcommand{\rank}[2]{\textrm{rank}_{#1}{(#2)}}
+\newcommand{\sva}{\textbf{SVA }}
+\newcommand{\mminus}[2]{m^{-#1}_{#2}(x_{#2})}
+\renewcommand{\eqref}[1]{Equation \ref{#1}}
+\newcommand{\thmref}[1]{Theorem \ref{#1}}
+\newcommand{\defref}[1]{Definition \ref{#1}}
+\newcommand{\apref}[1]{Appendix \ref{#1}}
+\newcommand{\lemref}[1]{Lemma \ref{#1}}
+\newcommand{\quesref}[1]{Question \ref{#1}}
+\newcommand{\appref}[1]{Appendix \ref{#1}}
+\newcommand{\figref}[1]{Figure \ref{#1}}
+\newcommand{\secref}[1]{Section \ref{#1}}
+\newcommand{\corref}[1]{Corrolary \ref{#1}}
+\newcommand{\propref}[1]{Prop.~\ref{#1}}
+\newcommand{\conjref}[1]{Conjecture \ref{#1}}
+\newcommand{\gens}[1]{\langle {#1} \rangle}
+\newcommand{\expect}[2]{\mathbb{E}_{#1}\left[{#2}\right]}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\vol}[1]{{\cal V}\left({#1}\right)}
+\newcommand{\zb}[1]{{\zz}^{(#1)}}
+\newcommand{\xb}[1]{{\xx}^{(#1)}}
+\newcommand{\yb}[1]{{\yy}^{}}
+\newcommand{\TT}{\boldsymbol{T}}
+\newcommand{\xbh}[1]{{\hat{\xx}}^{(#1)}}
+
+\newcommand{\xbi}[2]{{x}^{(#1)}_{#2}}
+\newcommand{\ybi}[2]{{y}^{(#1)}_{#2}}
+
+\newcommand{\xbhi}[2]{{\hat{x}}^{(#1)}_{#2}}
+
+\newcommand{\SBMP}[1]{\hat{\margpoly}(G,{#1})}
+\newcommand{\approxSBMP}[1]{\hat{\margpoly}^{\cal ST}_{L}{(G,{#1})}}
+\newtheorem{definition}{Definition}
+\newtheorem{question}{Question}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{proposition}{Proposition}[theorem]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{corollary}[theorem]{Corrolary}
+\newtheorem{fact}{Fact}[section]
+
+\newcommand{\apn}{\mathcal{D}^*}
+\newcommand{\apa}{\mathcal{D}^\#}
+%%U
+\usepackage{ bbold }
+\newcommand{\deltaF}[1]{\mathbb{1}\left\{#1\right\}}
+\newcommand{\naturalN}{\mathbb{N}}
+\newcommand{\mexp}[1]{e^{\left\{#1\right\}}}
+\newcommand{\sign}[1]{\textbf{sgn}\left\{#1\right\}}
+%%
